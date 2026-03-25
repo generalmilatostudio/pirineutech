@@ -21,12 +21,12 @@ export default function Footer() {
 
         {/* Col 1 — logo + tagline */}
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="w-6 h-6 bg-white rounded-sm inline-block shrink-0" aria-hidden="true" />
-            <span className="text-[15px] font-semibold tracking-tight text-white">
-              Pirineu Tech
-            </span>
-          </div>
+          <img
+            src="/logo.svg"
+            alt="Pirineu Tech"
+            className="h-8 w-auto"
+            style={{ filter: 'brightness(0) invert(1)' }}
+          />
           <p className="text-sm text-[#555] mt-3 max-w-xs leading-[1.6]">
             El node tecnològic de l&apos;Alt Pirineu i Aran.
           </p>
@@ -63,6 +63,19 @@ export default function Footer() {
           </a>
         </div>
 
+      </div>
+
+      {/* Col·laboren separator */}
+      <div className="max-w-7xl mx-auto border-t border-white/10 mt-12">
+        <p className="text-xs uppercase tracking-[0.15em] text-[#444] mb-6 mt-12">
+          Col·laboren amb nosaltres
+        </p>
+        <img
+          src="https://pirineutech.com/sites/default/files/inline-images/idapa-logo.png"
+          alt="IDAPA"
+          className="h-8 w-auto"
+          style={{ filter: 'brightness(0) invert(1)', opacity: 0.4 }}
+        />
       </div>
 
       {/* Bottom bar */}

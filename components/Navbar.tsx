@@ -23,18 +23,15 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2.5 shrink-0">
-          <span
-            className="w-6 h-6 rounded-sm inline-block transition-colors duration-300"
-            style={{ background: scrolled ? '#0f0f0f' : 'rgba(255,255,255,0.9)' }}
-            aria-hidden="true"
+        <a href="/" className="shrink-0">
+          <img
+            src="/logo.svg"
+            alt="Pirineu Tech"
+            className="h-8 w-auto transition-all duration-300"
+            style={{
+              filter: scrolled ? 'brightness(0)' : 'brightness(0) invert(1)',
+            }}
           />
-          <span
-            className="text-[15px] font-semibold tracking-tight transition-colors duration-300"
-            style={{ color: scrolled ? '#0f0f0f' : '#ffffff' }}
-          >
-            Pirineu Tech
-          </span>
         </a>
 
         {/* Center links */}

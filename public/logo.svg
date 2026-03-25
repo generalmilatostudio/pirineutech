@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 32" fill="none">
+  <!-- Mountain mark -->
+  <path d="M6 26 L14 10 L22 26Z" fill="#0f0f0f"/>
+  <path d="M16 26 L26 8 L36 26Z" fill="#0f0f0f" opacity="0.55"/>
+  <!-- Wordmark -->
+  <text x="44" y="22" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="600" letter-spacing="-0.3" fill="#0f0f0f">Pirineu Tech</text>
+</svg>
