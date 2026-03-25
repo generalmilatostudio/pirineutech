@@ -3,9 +3,40 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const H1_TEXT = "El Pirineu té el seu propi ritme. Nosaltres l'accelerem."
 const VIDEO_URL =
   'https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/sany9bjw5czkdtgzgtpc.mp4'
+
+// Segments: plain text alternating with italic spans
+// Full text: "El Pirineu té el seu propi ritme. Nosaltres l'accelerem."
+const SEGMENTS: { text: string; italic: boolean }[] = [
+  { text: "El Pirineu té el seu ", italic: false },
+  { text: "propi ritme",          italic: true  },
+  { text: ". Nosaltres l'",       italic: false },
+  { text: "accelerem",            italic: true  },
+  { text: ".",                    italic: false },
+]
+
+const FULL_TEXT = SEGMENTS.map((s) => s.text).join('')
+
+function renderTypewriter(displayed: string) {
+  let remaining = displayed.length
+  const nodes: React.ReactNode[] = []
+  for (let i = 0; i < SEGMENTS.length; i++) {
+    if (remaining <= 0) break
+    const seg = SEGMENTS[i]
+    const visible = seg.text.slice(0, remaining)
+    remaining -= seg.text.length
+    if (!visible) break
+    nodes.push(
+      seg.italic ? (
+        <em key={i} style={{ fontStyle: 'italic' }}>{visible}</em>
+      ) : (
+        <span key={i}>{visible}</span>
+      )
+    )
+  }
+  return nodes
+}
 
 export default function Hero() {
   const [displayed, setDisplayed] = useState('')
@@ -15,8 +46,8 @@ export default function Hero() {
     let i = 0
     const interval = setInterval(() => {
       i++
-      setDisplayed(H1_TEXT.slice(0, i))
-      if (i === H1_TEXT.length) {
+      setDisplayed(FULL_TEXT.slice(0, i))
+      if (i === FULL_TEXT.length) {
         clearInterval(interval)
         setDone(true)
       }
@@ -39,26 +70,39 @@ export default function Hero() {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/50" />
 
-      {/* Content — bottom-left */}
-      <div className="relative z-10 h-full flex flex-col justify-end pb-16 pl-16 pr-8">
+      {/* White gradient fade at bottom */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{
+          height: '40%',
+          background: 'linear-gradient(to top, rgba(255,255,255,0.85), transparent)',
+          zIndex: 2,
+        }}
+      />
+
+      {/* Content — bottom-left, above gradient */}
+      <div className="absolute inset-0 flex flex-col justify-end pb-16 pl-16 pr-8" style={{ zIndex: 3 }}>
         <div className="flex flex-col items-start gap-6 max-w-2xl">
           {/* Pill tag — glassmorphism */}
           <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs tracking-[0.15em] uppercase font-medium text-white">
             Node tecnològic · Alt Pirineu i Aran
           </div>
 
-          {/* H1 typewriter — Cormorant Garamond, weight 300 */}
+          {/* H1 — Playfair Display, weight 400, selective italic */}
           <h1
-            className="text-white font-light leading-tight tracking-[-0.02em] font-[family-name:var(--font-cormorant)]"
+            className="text-white"
             style={{
-              fontSize: 'clamp(2.8rem, 6vw, 5rem)',
-              fontWeight: 300,
+              fontFamily: '"Playfair Display", Georgia, serif',
+              fontSize: 'clamp(2.8rem, 5.5vw, 4.5rem)',
+              fontWeight: 400,
+              lineHeight: 1.05,
+              letterSpacing: '-0.01em',
             }}
           >
-            {displayed}
+            {renderTypewriter(displayed)}
             {!done && (
               <span
-                className="inline-block w-[2px] h-[0.85em] bg-white ml-1 align-middle animate-pulse"
+                className="inline-block w-[2px] h-[0.8em] bg-white ml-0.5 align-middle animate-pulse"
                 aria-hidden="true"
               />
             )}
