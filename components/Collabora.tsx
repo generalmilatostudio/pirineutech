@@ -18,11 +18,13 @@ export default function Collabora() {
         className="relative overflow-hidden flex items-end justify-start pb-24 pt-40 px-6 md:px-16 lg:px-24"
         style={{ minHeight: '80vh' }}
       >
-        {/* Background image */}
-        <img
-          src="https://cdn.midjourney.com/f9f1a737-a8c1-4703-a67c-d7ab78c2ffdd/0_1.png"
-          alt=""
-          aria-hidden="true"
+        {/* Background video */}
+        <video
+          src="https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/rufb9ekvxxnfgrtqaeh0.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
 
