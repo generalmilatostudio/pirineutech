@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion'
 
-const EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1]
-
 export default function Visio() {
   return (
     <>
@@ -51,23 +49,21 @@ export default function Visio() {
             </span>
           </motion.div>
 
-          {/* Quote — clip-path reveal */}
-          <div className="overflow-hidden max-w-3xl">
-            <motion.blockquote
-              className="font-playfair text-[#0f0f0f] font-normal leading-[1.2]"
-              style={{
-                fontSize: 'clamp(2.2rem, 4vw, 3.5rem)',
-                fontStyle: 'italic',
-                letterSpacing: '-0.02em',
-              }}
-              initial={{ clipPath: 'inset(0 0 100% 0)' }}
-              whileInView={{ clipPath: 'inset(0 0 0% 0)' }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 1, ease: EXPO }}
-            >
-              Pensem en dècades. No en trimestres.
-            </motion.blockquote>
-          </div>
+          {/* Quote */}
+          <motion.blockquote
+            className="font-playfair text-[#0f0f0f] font-normal leading-[1.2] max-w-3xl relative z-10"
+            style={{
+              fontSize: 'clamp(2.2rem, 4vw, 3.5rem)',
+              fontStyle: 'italic',
+              letterSpacing: '-0.02em',
+            }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+          >
+            Pensem en dècades. No en trimestres.
+          </motion.blockquote>
 
           {/* Attribution */}
           <motion.div
