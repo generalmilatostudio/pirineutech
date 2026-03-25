@@ -46,7 +46,7 @@ export default function Missio() {
     <>
       <hr className="border-t border-[#f0f0f0] mx-0" />
 
-      <section className="bg-white py-24 px-12">
+      <section className="bg-white py-24 px-6 md:px-12 lg:px-16">
         <div className="max-w-7xl mx-auto">
 
           {/* TOP PART */}
@@ -105,7 +105,7 @@ export default function Missio() {
             >
               <motion.div className="absolute inset-0" style={{ y }}>
                 <video
-                  src="https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/hcjuee44dqbb7n3mjo7d.mp4"
+                  src="https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/orfiu6rjgsf0c2q6rsla.mp4"
                   autoPlay
                   muted
                   loop

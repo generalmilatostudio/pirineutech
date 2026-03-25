@@ -14,8 +14,8 @@ export default function Visio() {
     <>
       <hr className="border-t border-[#e8e8e8] mx-0" />
 
-      <section className="bg-[#f5f2ee] py-32 px-8">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <section className="bg-[#f5f2ee] py-32 px-6 md:px-12 lg:px-16">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 
           {/* Left column */}
           <motion.div {...fadeUp(0)}>
