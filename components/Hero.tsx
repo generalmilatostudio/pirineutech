@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const VIDEO_URL =
-  'https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/sany9bjw5czkdtgzgtpc.mp4'
+  'https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/l38nvbtow4lm9rq95nk9.mp4'
 
 // Segments: plain text alternating with italic spans
 // Full text: "El Pirineu té el seu propi ritme. Nosaltres l'accelerem."
