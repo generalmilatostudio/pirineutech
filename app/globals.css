@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,4 +22,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
 }

@@ -90,7 +90,7 @@ export default function Hero() {
 
           {/* H1 — Playfair Display via CSS variable, weight 400, selective italic */}
           <h1
-            className="text-white font-[family-name:var(--font-playfair)]"
+            className="text-white font-playfair"
             style={{
               fontSize: 'clamp(2.8rem, 5.5vw, 4.5rem)',
               fontWeight: 400,
