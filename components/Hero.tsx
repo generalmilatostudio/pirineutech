@@ -88,11 +88,10 @@ export default function Hero() {
             Node tecnològic · Alt Pirineu i Aran
           </div>
 
-          {/* H1 — Playfair Display, weight 400, selective italic */}
+          {/* H1 — Playfair Display via CSS variable, weight 400, selective italic */}
           <h1
-            className="text-white"
+            className="text-white font-[family-name:var(--font-playfair)]"
             style={{
-              fontFamily: '"Playfair Display", Georgia, serif',
               fontSize: 'clamp(2.8rem, 5.5vw, 4.5rem)',
               fontWeight: 400,
               lineHeight: 1.05,

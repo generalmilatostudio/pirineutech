@@ -1,16 +1,20 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { Playfair_Display } from 'next/font/google'
 import './globals.css'
-// Playfair Display via @fontsource (Google Fonts blocked at build time)
-import '@fontsource/playfair-display/400.css'
-import '@fontsource/playfair-display/400-italic.css'
-import '@fontsource/playfair-display/500.css'
-import '@fontsource/playfair-display/500-italic.css'
 
 const geist = localFont({
   src: './fonts/GeistVF.woff',
   variable: '--font-geist',
   weight: '100 900',
+  display: 'swap',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair',
   display: 'swap',
 })
 
@@ -26,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ca" className={geist.variable}>
+    <html lang="ca" className={`${geist.variable} ${playfair.variable}`}>
       <body className="bg-white text-[#0f0f0f] antialiased font-[family-name:var(--font-geist)]">
         {children}
       </body>
