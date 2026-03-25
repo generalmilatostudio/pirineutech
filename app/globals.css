@@ -27,3 +27,13 @@ body {
 .font-playfair {
   font-family: 'Playfair Display', serif;
 }
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; text-shadow: none; }
+  50%       { opacity: 1;   text-shadow: 0 0 8px rgba(255,255,255,0.9); }
+}
+
+.pill-chevron {
+  color: white;
+  animation: pulse-glow 2s ease-in-out infinite;
+}

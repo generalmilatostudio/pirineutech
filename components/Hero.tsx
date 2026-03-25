@@ -84,8 +84,9 @@ export default function Hero() {
       <div className="absolute inset-0 flex flex-col justify-end pb-16 pl-16 pr-8" style={{ zIndex: 3 }}>
         <div className="flex flex-col items-start gap-6 max-w-2xl">
           {/* Pill tag — glassmorphism */}
-          <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs tracking-[0.15em] uppercase font-medium text-white">
-            Node tecnològic · Alt Pirineu i Aran
+          <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-full px-4 py-1.5 text-xs tracking-[0.15em] uppercase font-medium text-white flex items-center gap-2">
+            <span>Node tecnològic · Alt Pirineu i Aran</span>
+            <span className="pill-chevron text-[10px]">›</span>
           </div>
 
           {/* H1 — Playfair Display via CSS variable, weight 400, selective italic */}
@@ -109,7 +110,12 @@ export default function Hero() {
 
           {/* Subheading */}
           <motion.p
-            className="text-lg text-white/80 leading-[1.7]"
+            className="text-white/95"
+            style={{
+              fontSize: '16px',
+              lineHeight: 1.6,
+              textShadow: '0 1px 8px rgba(0,0,0,0.4)',
+            }}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8, ease: 'easeOut' }}
