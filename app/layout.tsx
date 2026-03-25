@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { Geist } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
-const geist = Geist({
-  subsets: ['latin'],
+const geist = localFont({
+  src: './fonts/GeistVF.woff',
   variable: '--font-geist',
+  weight: '100 900',
   display: 'swap',
 })
 
