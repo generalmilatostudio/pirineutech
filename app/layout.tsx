@@ -1,11 +1,19 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 
 const geist = localFont({
   src: './fonts/GeistVF.woff',
   variable: '--font-geist',
   weight: '100 900',
+  display: 'swap',
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400'],
+  variable: '--font-cormorant',
   display: 'swap',
 })
 
@@ -21,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ca" className={geist.variable}>
+    <html lang="ca" className={`${geist.variable} ${cormorant.variable}`}>
       <body className="bg-white text-[#0f0f0f] antialiased font-[family-name:var(--font-geist)]">
         {children}
       </body>
