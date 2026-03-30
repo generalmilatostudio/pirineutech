@@ -1,13 +1,48 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  let mounted = $state(false);
+  let sectionEl = $state<HTMLElement | null>(null);
   let videoEl = $state<HTMLVideoElement | null>(null);
 
+  const words = ['Tecnologia', 'per', 'transformar', 'el', 'Pirineu'];
+
+  const navLinks = [
+    { label: 'Projectes', href: '#projectes' },
+    { label: 'Línies', href: '#linies' },
+    { label: 'Novetats', href: '#novetats' },
+    { label: 'Qui som', href: '#el-projecte' },
+  ];
+
   onMount(() => {
-    requestAnimationFrame(() => {
-      mounted = true;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const eyebrow = sectionEl?.querySelector<HTMLElement>('.eyebrow-badge');
+    const wordEls = sectionEl?.querySelectorAll<HTMLElement>('.word') ?? [];
+    const navPill = sectionEl?.querySelector<HTMLElement>('.nav-pill');
+    const subtitle = sectionEl?.querySelector<HTMLElement>('.subtitle');
+
+    if (prefersReduced) {
+      [eyebrow, ...Array.from(wordEls), navPill, subtitle].forEach((el) => {
+        if (!el) return;
+        el.style.transition = 'none';
+        el.classList.add('revealed');
+      });
+      return;
+    }
+
+    // Eyebrow: delay 100ms
+    setTimeout(() => eyebrow?.classList.add('revealed'), 100);
+
+    // Words: 300ms initial + 120ms stagger
+    wordEls.forEach((el, i) => {
+      setTimeout(() => el.classList.add('revealed'), 300 + i * 120);
     });
+
+    // Subtitle: delay 800ms
+    setTimeout(() => subtitle?.classList.add('revealed'), 800);
+
+    // Nav pill: delay 900ms
+    setTimeout(() => navPill?.classList.add('revealed'), 900);
   });
 
   function handleVideoEnded() {
@@ -16,16 +51,9 @@
       videoEl.style.opacity = '0.85';
     }
   }
-
-  const navLinks = [
-    { label: 'Projectes', href: '#projectes' },
-    { label: 'Línies', href: '#linies' },
-    { label: 'Novetats', href: '#novetats' },
-    { label: 'Qui som', href: '#el-projecte' },
-  ];
 </script>
 
-<section class="hero-section" id="inici">
+<section class="hero-section" id="inici" bind:this={sectionEl}>
 
   <!-- Fallback per prefers-reduced-motion -->
   <div class="motion-fallback" aria-hidden="true"></div>
@@ -34,8 +62,7 @@
   <!-- svelte-ignore a11y_media_has_caption -->
   <video
     bind:this={videoEl}
-    class="video-el"
-    class:video-visible={mounted}
+    class="video-el video-visible"
     src="https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/s6lwqqjcw3sdmx7ohrak.mp4"
     autoplay
     muted
@@ -49,30 +76,19 @@
   <div class="content">
 
     <!-- Eyebrow badge glassmorphism -->
-    <span
-      class="eyebrow-badge anim-hero"
-      class:visible={mounted}
-      style="--delay: 200ms"
-    >
+    <span class="eyebrow-badge">
       Alt Pirineu i Aran
     </span>
 
-    <!-- H1 -->
-    <h1
-      class="hero-h1 anim-hero"
-      class:visible={mounted}
-      style="--delay: 350ms"
-    >
-      Tecnologia per transformar el Pirineu
+    <!-- H1 — variable font word reveal -->
+    <h1 class="hero-h1" aria-label="Tecnologia per transformar el Pirineu">
+      {#each words as word, i}
+        <span class="word">{word}</span>{#if i < words.length - 1}<span class="word-space" aria-hidden="true"> </span>{/if}
+      {/each}
     </h1>
 
     <!-- Nav links pill glassmorphism -->
-    <nav
-      class="nav-pill anim-hero"
-      class:visible={mounted}
-      style="--delay: 500ms"
-      aria-label="Navegació hero"
-    >
+    <nav class="nav-pill" aria-label="Navegació hero">
       {#each navLinks as link, i}
         <a href={link.href} class="nav-link">{link.label}</a>
         {#if i < navLinks.length - 1}
@@ -84,11 +100,7 @@
   </div>
 
   <!-- Subtítol fix al fons -->
-  <p
-    class="subtitle anim-hero"
-    class:visible={mounted}
-    style="--delay: 650ms"
-  >
+  <p class="subtitle">
     Pirineu Tech impulsa projectes, infraestructures i aliances per construir
     un territori més connectat i resilient.
   </p>
@@ -176,18 +188,53 @@
     text-transform: uppercase;
     color: rgba(248, 251, 255, 0.70);
     margin-bottom: 20px;
+    /* initial hidden state */
+    opacity: 0;
+    filter: blur(16px);
+    transition:
+      opacity 600ms ease-out,
+      filter 600ms ease-out;
   }
 
-  /* ── H1 ── */
+  .eyebrow-badge:global(.revealed) {
+    opacity: 1;
+    filter: blur(0px);
+  }
+
+  /* ── H1 container ── */
   .hero-h1 {
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
     font-size: clamp(2.375rem, 5vw, 4.25rem);
     color: #F8FBFF;
     line-height: 1.08;
     max-width: 820px;
     letter-spacing: -0.01em;
     margin-bottom: 0;
+    /* Reset font-weight — controlled per word span */
+    font-weight: inherit;
+  }
+
+  /* ── Word spans — variable font reveal ── */
+  .word {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(16px);
+    font-weight: 100;
+    transition:
+      opacity 700ms ease-out,
+      filter 700ms ease-out,
+      font-weight 700ms ease-out;
+  }
+
+  .word:global(.revealed) {
+    opacity: 1;
+    filter: blur(0px);
+    font-weight: 700;
+  }
+
+  .word-space {
+    display: inline-block;
+    width: 0.25em;
   }
 
   /* ── Nav pill glassmorphism ── */
@@ -202,6 +249,13 @@
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.15);
     margin-top: 28px;
+    /* initial hidden state */
+    opacity: 0;
+    transition: opacity 600ms ease-out;
+  }
+
+  .nav-pill:global(.revealed) {
+    opacity: 1;
   }
 
   .nav-link {
@@ -241,28 +295,16 @@
     text-align: center;
     line-height: 1.6;
     white-space: nowrap;
-  }
-
-  /* ── Animació d'entrada ── */
-  .anim-hero {
+    /* initial hidden state */
     opacity: 0;
-    transform: translateY(16px);
+    filter: blur(16px);
     transition:
-      opacity 700ms ease-out var(--delay, 0ms),
-      transform 700ms ease-out var(--delay, 0ms);
+      opacity 800ms ease-out,
+      filter 800ms ease-out;
   }
 
-  .anim-hero.visible {
+  .subtitle:global(.revealed) {
     opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* El subtítol usa translateX per centrar; ajustem la classe d'animació */
-  .subtitle.anim-hero {
-    transform: translateX(-50%) translateY(16px);
-  }
-
-  .subtitle.anim-hero.visible {
-    transform: translateX(-50%) translateY(0);
+    filter: blur(0px);
   }
 </style>
