@@ -16,6 +16,13 @@
       videoEl.style.opacity = '0.85';
     }
   }
+
+  const navLinks = [
+    { label: 'Projectes', href: '#projectes' },
+    { label: 'Línies', href: '#linies' },
+    { label: 'Novetats', href: '#novetats' },
+    { label: 'Qui som', href: '#el-projecte' },
+  ];
 </script>
 
 <section class="hero-section" id="inici">
@@ -38,9 +45,10 @@
     aria-hidden="true"
   ></video>
 
-  <!-- Contingut — posicionat a baix -->
+  <!-- Contingut centrat verticalment -->
   <div class="content">
 
+    <!-- Eyebrow -->
     <p
       class="eyebrow anim-hero"
       class:visible={mounted}
@@ -49,6 +57,7 @@
       Alt Pirineu i Aran
     </p>
 
+    <!-- H1 -->
     <h1
       class="hero-h1 anim-hero"
       class:visible={mounted}
@@ -57,27 +66,32 @@
       Tecnologia per transformar el Pirineu
     </h1>
 
-    <p
-      class="hero-subtitle anim-hero"
+    <!-- Nav links inline -->
+    <nav
+      class="nav-links anim-hero"
       class:visible={mounted}
       style="--delay: 500ms"
+      aria-label="Navegació hero"
     >
-      Pirineu Tech impulsa projectes, infraestructures i aliances per accelerar
-      la innovació tecnològica a l'Alt Pirineu i Aran i construir un territori
-      més connectat, intel·ligent i resilient.
-    </p>
+      {#each navLinks as link, i}
+        <a href={link.href} class="nav-link">{link.label}</a>
+        {#if i < navLinks.length - 1}
+          <span class="nav-sep" aria-hidden="true">/</span>
+        {/if}
+      {/each}
+    </nav>
 
-    <div
-      class="ctas anim-hero"
-      class:visible={mounted}
-      style="--delay: 650ms"
-    >
-      <a href="#projectes" class="cta-primary">Descobreix els projectes</a>
-      <a href="#adhesio" class="cta-ghost">Fes-te soci</a>
-    </div>
-
-    <p class="scroll-label">SCROLL</p>
   </div>
+
+  <!-- Subtítol fix al fons -->
+  <p
+    class="subtitle anim-hero"
+    class:visible={mounted}
+    style="--delay: 650ms"
+  >
+    Pirineu Tech impulsa projectes, infraestructures i aliances per construir
+    un territori més connectat i resilient.
+  </p>
 
 </section>
 
@@ -131,102 +145,88 @@
       radial-gradient(ellipse 40% 40% at 50% 30%, rgba(125, 178, 255, 0.08) 0%, transparent 70%);
   }
 
-  /* ── Contingut ── */
+  /* ── Contingut centrat ── */
   .content {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    inset: 0;
     z-index: 10;
-    padding-bottom: clamp(48px, 7vh, 80px);
-    padding-left: clamp(40px, 8vw, 120px);
-    padding-right: clamp(40px, 8vw, 120px);
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  /* ── Tipografia ── */
-  .eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #7DB2FF;
-  }
-
-  .hero-h1 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2.625rem, 6vw, 4.5rem);
-    color: #F8FBFF;
-    line-height: 1.06;
-    max-width: 780px;
-    margin: 16px auto 0;
-  }
-
-  .hero-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: clamp(1rem, 1.8vw, 1.1875rem);
-    color: rgba(248, 251, 255, 0.70);
-    max-width: 620px;
-    margin: 16px auto 0;
-    line-height: 1.65;
-  }
-
-  /* ── CTAs ── */
-  .ctas {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
-    margin-top: 32px;
+    text-align: center;
+    padding: clamp(40px, 6vw, 100px);
   }
 
-  .cta-primary {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    padding: 13px 26px;
-    border-radius: 6px;
-    background: #7DB2FF;
-    color: #07111F;
-    text-decoration: none;
-    transition: background-color 200ms ease;
-  }
-
-  .cta-primary:hover {
-    background: #CFE2FF;
-  }
-
-  .cta-ghost {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    padding: 13px 26px;
-    border-radius: 6px;
-    border: 1px solid var(--border-glass);
-    background: var(--glass-dark);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    color: #F8FBFF;
-    text-decoration: none;
-    transition: border-color 200ms ease;
-  }
-
-  .cta-ghost:hover {
-    border-color: #7DB2FF;
-  }
-
-  /* ── Scroll label ── */
-  .scroll-label {
+  /* ── Eyebrow ── */
+  .eyebrow {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 11px;
-    letter-spacing: 0.2em;
-    color: rgba(248, 251, 255, 0.35);
-    margin-top: 24px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(248, 251, 255, 0.50);
+    margin-bottom: 24px;
+  }
+
+  /* ── H1 ── */
+  .hero-h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.25rem, 7.5vw, 6rem);
+    color: #F8FBFF;
+    line-height: 1.0;
+    max-width: 900px;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+  }
+
+  /* ── Nav links inline ── */
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .nav-link {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(248, 251, 255, 0.55);
+    text-decoration: none;
+    transition: color 200ms ease;
+    padding: 0 14px;
+  }
+
+  .nav-link:hover {
+    color: rgba(248, 251, 255, 1);
+  }
+
+  .nav-sep {
+    font-size: 11px;
+    color: rgba(248, 251, 255, 0.25);
+    user-select: none;
+  }
+
+  /* ── Subtítol fix al fons ── */
+  .subtitle {
+    position: absolute;
+    bottom: clamp(32px, 5vh, 56px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    color: rgba(248, 251, 255, 0.55);
+    max-width: 480px;
+    text-align: center;
+    line-height: 1.6;
+    white-space: nowrap;
   }
 
   /* ── Animació d'entrada ── */
@@ -241,5 +241,14 @@
   .anim-hero.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* El subtítol usa translateX per centrar; ajustem la classe d'animació */
+  .subtitle.anim-hero {
+    transform: translateX(-50%) translateY(16px);
+  }
+
+  .subtitle.anim-hero.visible {
+    transform: translateX(-50%) translateY(0);
   }
 </style>
