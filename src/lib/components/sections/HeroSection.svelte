@@ -20,34 +20,26 @@
 
 <section class="hero-section" id="inici">
 
-  <!-- ── ZONA VISUAL ── -->
-  <div class="video-zone">
-    <!-- Fallback per prefers-reduced-motion -->
-    <div class="motion-fallback" aria-hidden="true"></div>
+  <!-- Fallback per prefers-reduced-motion -->
+  <div class="motion-fallback" aria-hidden="true"></div>
 
-    <!-- Vídeo (una sola reproducció) -->
-    <!-- svelte-ignore a11y_media_has_caption -->
-    <video
-      bind:this={videoEl}
-      class="video-el"
-      class:video-visible={mounted}
-      src="https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/s6lwqqjcw3sdmx7ohrak.mp4"
-      autoplay
-      muted
-      playsinline
-      preload="auto"
-      onended={handleVideoEnded}
-      aria-hidden="true"
-    ></video>
+  <!-- Vídeo fullscreen (una sola reproducció) -->
+  <!-- svelte-ignore a11y_media_has_caption -->
+  <video
+    bind:this={videoEl}
+    class="video-el"
+    class:video-visible={mounted}
+    src="https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/s6lwqqjcw3sdmx7ohrak.mp4"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+    onended={handleVideoEnded}
+    aria-hidden="true"
+  ></video>
 
-    <!-- Gradient vertical → dark-900 al fons -->
-    <div class="overlay-gradient" aria-hidden="true"></div>
-    <!-- Capa de profunditat -->
-    <div class="overlay-depth" aria-hidden="true"></div>
-  </div>
-
-  <!-- ── ZONA TEXT ── -->
-  <div class="text-zone">
+  <!-- Contingut — posicionat a baix -->
+  <div class="content">
 
     <p
       class="eyebrow anim-hero"
@@ -90,33 +82,13 @@
 </section>
 
 <style>
-  /* ── Layout ── */
+  /* ── Contenidor ── */
   .hero-section {
-    height: 100svh;
-    min-height: 600px;
-    background: #07111F;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .video-zone {
-    flex: 62;
-    min-height: 0;
     position: relative;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-  }
-
-  .text-zone {
-    flex: 38;
-    min-height: 0;
     background: #07111F;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 clamp(20px, 5vw, 80px) clamp(16px, 2vh, 28px);
   }
 
   /* ── Vídeo ── */
@@ -128,6 +100,7 @@
     object-fit: cover;
     object-position: center;
     pointer-events: none;
+    z-index: 0;
     opacity: 0;
     transition: opacity 1000ms ease-out;
   }
@@ -150,6 +123,7 @@
     display: none;
     position: absolute;
     inset: 0;
+    z-index: 0;
     background-color: #07111F;
     background-image:
       radial-gradient(ellipse 80% 70% at 50% -5%, #122743 0%, transparent 65%),
@@ -157,24 +131,23 @@
       radial-gradient(ellipse 40% 40% at 50% 30%, rgba(125, 178, 255, 0.08) 0%, transparent 70%);
   }
 
-  /* ── Overlays ── */
-  .overlay-gradient {
+  /* ── Contingut ── */
+  .content {
     position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(to bottom, transparent 0%, #07111F 100%);
-    opacity: 0.5;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding-bottom: clamp(48px, 7vh, 80px);
+    padding-left: clamp(40px, 8vw, 120px);
+    padding-right: clamp(40px, 8vw, 120px);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .overlay-depth {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: #07111F;
-    opacity: 0.15;
-  }
-
-  /* ── Tipografia zona text ── */
+  /* ── Tipografia ── */
   .eyebrow {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
@@ -187,19 +160,19 @@
   .hero-h1 {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
-    font-size: clamp(2.25rem, 5vw, 4rem);
+    font-size: clamp(2.625rem, 6vw, 4.5rem);
     color: #F8FBFF;
-    line-height: 1.08;
-    max-width: 640px;
+    line-height: 1.06;
+    max-width: 780px;
     margin: 16px auto 0;
   }
 
   .hero-subtitle {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
-    color: rgba(248, 251, 255, 0.65);
-    max-width: 520px;
+    font-size: clamp(1rem, 1.8vw, 1.1875rem);
+    color: rgba(248, 251, 255, 0.70);
+    max-width: 620px;
     margin: 16px auto 0;
     line-height: 1.65;
   }
@@ -256,7 +229,7 @@
     margin-top: 24px;
   }
 
-  /* ── Animació d'entrada zona text ── */
+  /* ── Animació d'entrada ── */
   .anim-hero {
     opacity: 0;
     transform: translateY(16px);
