@@ -11,7 +11,7 @@
           Context
         </p>
         <h2
-          class="font-display font-bold text-text-dark leading-tight"
+          class="font-sans font-bold text-text-dark leading-tight"
           style="font-size: clamp(1.75rem, 3vw, 2.25rem);"
         >
           Per què és important ara
@@ -38,15 +38,15 @@
         <!-- Decorative stat strip -->
         <div class="mt-10 flex flex-wrap gap-8">
           <div>
-            <p class="font-display font-bold text-3xl" style="color: #2E6BB0;">70%</p>
+            <p class="font-sans font-bold text-3xl" style="color: #2E6BB0;">70%</p>
             <p class="font-body text-sm text-text-dark/60 mt-1">del territori català<br>és rural o de muntanya</p>
           </div>
           <div>
-            <p class="font-display font-bold text-3xl" style="color: #2E6BB0;">+15%</p>
+            <p class="font-sans font-bold text-3xl" style="color: #2E6BB0;">+15%</p>
             <p class="font-body text-sm text-text-dark/60 mt-1">de retorn a zones rurals<br>en els darrers cinc anys</p>
           </div>
           <div>
-            <p class="font-display font-bold text-3xl" style="color: #2E6BB0;">×3</p>
+            <p class="font-sans font-bold text-3xl" style="color: #2E6BB0;">×3</p>
             <p class="font-body text-sm text-text-dark/60 mt-1">impacte del teletreball<br>en economies locals</p>
           </div>
         </div>

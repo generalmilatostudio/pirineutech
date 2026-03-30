@@ -16,7 +16,7 @@
 
     <!-- H2 -->
     <h2
-      class="font-display font-bold text-text-dark leading-tight mb-8"
+      class="font-sans font-bold text-text-dark leading-tight mb-8"
       style="font-size: clamp(2.25rem, 4vw, 3rem);"
       use:fadeIn={{ delay: 100 }}
     >

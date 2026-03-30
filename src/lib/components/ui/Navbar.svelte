@@ -26,7 +26,7 @@
 >
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <!-- Logo -->
-    <a href="/" class="font-display font-bold text-xl text-text-light tracking-tight">
+    <a href="/" class="font-sans font-bold text-xl text-text-light tracking-tight">
       Pirineu Tech
     </a>
 

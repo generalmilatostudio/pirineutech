@@ -4,6 +4,10 @@ const config: Config = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      },
       colors: {
         dark: {
           900: '#07111F',
@@ -20,10 +24,6 @@ const config: Config = {
           400: '#7DB2FF',
           200: '#CFE2FF',
         },
-      },
-      fontFamily: {
-        display: ['Syne', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
       },
     },
   },

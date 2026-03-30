@@ -24,7 +24,7 @@
       <p class="font-body text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
         Projectes
       </p>
-      <h2 class="font-display font-bold text-text-light mb-4" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+      <h2 class="font-sans font-bold text-text-light mb-4" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
         Projectes que marquen la direcció
       </h2>
       <p class="font-body text-base text-text-light/65 max-w-xl">
@@ -46,10 +46,10 @@
           </span>
 
           <!-- Title -->
-          <h3 class="font-display font-bold text-text-light mt-5" style="font-size: clamp(1.5rem, 3vw, 2rem);">
+          <h3 class="font-sans font-bold text-text-light mt-5" style="font-size: clamp(1.5rem, 3vw, 2rem);">
             {projecte.title}
           </h3>
-          <p class="font-display font-semibold text-text-light/50 text-lg mt-1">
+          <p class="font-sans font-semibold text-text-light/50 text-lg mt-1">
             {projecte.subtitle}
           </p>
 

@@ -32,7 +32,7 @@
       <p class="font-body text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
         Línies estratègiques
       </p>
-      <h2 class="font-display font-bold text-text-light" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+      <h2 class="font-sans font-bold text-text-light" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
         Quatre línies per transformar el territori
       </h2>
     </div>
@@ -44,10 +44,10 @@
           class="linia-card rounded-xl p-10 transition-all duration-250 ease-out hover:-translate-y-1"
           use:fadeIn={{ delay: 100 + i * 100 }}
         >
-          <span class="font-display font-extrabold text-[3rem] leading-none text-accent-400/30">
+          <span class="font-sans font-extrabold text-[3rem] leading-none text-accent-400/30">
             {linia.num}
           </span>
-          <h3 class="font-display font-bold text-[1.375rem] text-text-light mt-4">
+          <h3 class="font-sans font-bold text-[1.375rem] text-text-light mt-4">
             {linia.title}
           </h3>
           <p class="font-body text-[0.9375rem] text-text-light/65 leading-[1.65] mt-3">

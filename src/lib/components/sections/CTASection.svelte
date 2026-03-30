@@ -9,7 +9,7 @@
   <div class="relative z-10 max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
     <!-- H2 -->
     <h2
-      class="font-display font-extrabold text-text-light leading-tight"
+      class="font-sans font-extrabold text-text-light leading-tight"
       style="font-size: clamp(2.5rem, 6vw, 4rem);"
       use:fadeIn={{ delay: 0 }}
     >

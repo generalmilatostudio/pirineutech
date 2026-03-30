@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-10">
       <!-- Brand -->
       <div>
-        <p class="font-display font-bold text-xl text-text-light mb-3">Pirineu Tech</p>
+        <p class="font-sans font-bold text-xl text-text-light mb-3">Pirineu Tech</p>
         <p class="font-body text-sm text-text-light/50 leading-relaxed max-w-xs">
           Associació privada sense ànim de lucre per a la transformació
           tecnològica de l'Alt Pirineu i Aran.

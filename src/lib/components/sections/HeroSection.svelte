@@ -2,95 +2,264 @@
   import { onMount } from 'svelte';
 
   let mounted = $state(false);
+  let videoEl = $state<HTMLVideoElement | null>(null);
 
   onMount(() => {
-    // Small rAF to ensure layout is done before triggering animations
     requestAnimationFrame(() => {
       mounted = true;
     });
   });
+
+  function handleVideoEnded() {
+    if (videoEl) {
+      videoEl.style.transition = 'opacity 3000ms ease-out';
+      videoEl.style.opacity = '0.85';
+    }
+  }
 </script>
 
-<section
-  class="relative min-h-screen bg-dark-900 flex items-center overflow-hidden"
-  id="inici"
->
-  <!-- Background radial gradient -->
-  <div class="hero-bg" aria-hidden="true"></div>
+<section class="hero-section" id="inici">
 
-  <!-- Content -->
-  <div class="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
-    <!-- Eyebrow -->
+  <!-- ── ZONA VISUAL ── -->
+  <div class="video-zone">
+    <!-- Fallback per prefers-reduced-motion -->
+    <div class="motion-fallback" aria-hidden="true"></div>
+
+    <!-- Vídeo (una sola reproducció) -->
+    <!-- svelte-ignore a11y_media_has_caption -->
+    <video
+      bind:this={videoEl}
+      class="video-el"
+      class:video-visible={mounted}
+      src="https://media.weavy.ai/video/upload/uploads/B3na8rRU3iOFlkcmlQ9fqSIdPa12/s6lwqqjcw3sdmx7ohrak.mp4"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+      onended={handleVideoEnded}
+      aria-hidden="true"
+    ></video>
+
+    <!-- Gradient vertical → dark-900 al fons -->
+    <div class="overlay-gradient" aria-hidden="true"></div>
+    <!-- Capa de profunditat -->
+    <div class="overlay-depth" aria-hidden="true"></div>
+  </div>
+
+  <!-- ── ZONA TEXT ── -->
+  <div class="text-zone">
+
     <p
-      class="font-body text-xs font-semibold uppercase tracking-widest text-accent-400 mb-5 anim-hero"
+      class="eyebrow anim-hero"
       class:visible={mounted}
-      style="--delay: 0ms"
+      style="--delay: 200ms"
     >
       Alt Pirineu i Aran
     </p>
 
-    <!-- H1 -->
     <h1
-      class="font-display font-extrabold text-text-light leading-[1.05] max-w-[720px] anim-hero"
+      class="hero-h1 anim-hero"
       class:visible={mounted}
-      style="--delay: 150ms; font-size: clamp(3rem, 7vw, 6rem);"
+      style="--delay: 350ms"
     >
       Tecnologia per transformar el Pirineu
     </h1>
 
-    <!-- Subtitle -->
     <p
-      class="font-body font-normal text-[1.125rem] leading-relaxed text-text-light/70 max-w-[560px] mt-6 anim-hero"
+      class="hero-subtitle anim-hero"
       class:visible={mounted}
-      style="--delay: 300ms"
+      style="--delay: 500ms"
     >
       Pirineu Tech impulsa projectes, infraestructures i aliances per accelerar
       la innovació tecnològica a l'Alt Pirineu i Aran i construir un territori
       més connectat, intel·ligent i resilient.
     </p>
 
-    <!-- CTAs -->
     <div
-      class="flex flex-wrap gap-4 mt-10 anim-hero"
+      class="ctas anim-hero"
       class:visible={mounted}
-      style="--delay: 450ms"
+      style="--delay: 650ms"
     >
-      <a
-        href="#projectes"
-        class="font-body font-semibold px-7 py-3.5 rounded-md bg-accent-400 text-dark-900 hover:bg-accent-200 transition-colors duration-200"
-      >
-        Descobreix els projectes
-      </a>
-      <a
-        href="#adhesio"
-        class="font-body font-semibold px-7 py-3.5 rounded-md text-text-light transition-colors duration-200 cta-ghost"
-      >
-        Fes-te soci
-      </a>
+      <a href="#projectes" class="cta-primary">Descobreix els projectes</a>
+      <a href="#adhesio" class="cta-ghost">Fes-te soci</a>
     </div>
+
+    <p class="scroll-label">SCROLL</p>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2">
-    <span class="text-xs font-body text-text-light/40 tracking-widest uppercase">Scroll</span>
-    <div class="scroll-line" aria-hidden="true"></div>
-  </div>
 </section>
 
 <style>
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 70% 60% at 75% -10%, #122743 0%, transparent 65%),
-      radial-gradient(ellipse 40% 40% at 20% 80%, #0C1A2E 0%, transparent 60%);
-    pointer-events: none;
+  /* ── Layout ── */
+  .hero-section {
+    height: 100svh;
+    min-height: 600px;
+    background: #07111F;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
-  /* Hero entrance animations */
+  .video-zone {
+    flex: 62;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .text-zone {
+    flex: 38;
+    min-height: 0;
+    background: #07111F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 clamp(20px, 5vw, 80px) clamp(16px, 2vh, 28px);
+  }
+
+  /* ── Vídeo ── */
+  .video-el {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1000ms ease-out;
+  }
+
+  .video-el.video-visible {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-el {
+      display: none;
+    }
+    .motion-fallback {
+      display: block !important;
+    }
+  }
+
+  /* ── Fallback gradient (reduced-motion) ── */
+  .motion-fallback {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background-color: #07111F;
+    background-image:
+      radial-gradient(ellipse 80% 70% at 50% -5%, #122743 0%, transparent 65%),
+      radial-gradient(ellipse 50% 50% at 15% 85%, #0C1A2E 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 30%, rgba(125, 178, 255, 0.08) 0%, transparent 70%);
+  }
+
+  /* ── Overlays ── */
+  .overlay-gradient {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 0%, #07111F 100%);
+    opacity: 0.5;
+  }
+
+  .overlay-depth {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: #07111F;
+    opacity: 0.15;
+  }
+
+  /* ── Tipografia zona text ── */
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #7DB2FF;
+  }
+
+  .hero-h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    color: #F8FBFF;
+    line-height: 1.08;
+    max-width: 640px;
+    margin: 16px auto 0;
+  }
+
+  .hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
+    color: rgba(248, 251, 255, 0.65);
+    max-width: 520px;
+    margin: 16px auto 0;
+    line-height: 1.65;
+  }
+
+  /* ── CTAs ── */
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .cta-primary {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 6px;
+    background: #7DB2FF;
+    color: #07111F;
+    text-decoration: none;
+    transition: background-color 200ms ease;
+  }
+
+  .cta-primary:hover {
+    background: #CFE2FF;
+  }
+
+  .cta-ghost {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 6px;
+    border: 1px solid var(--border-glass);
+    background: var(--glass-dark);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #F8FBFF;
+    text-decoration: none;
+    transition: border-color 200ms ease;
+  }
+
+  .cta-ghost:hover {
+    border-color: #7DB2FF;
+  }
+
+  /* ── Scroll label ── */
+  .scroll-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(248, 251, 255, 0.35);
+    margin-top: 24px;
+  }
+
+  /* ── Animació d'entrada zona text ── */
   .anim-hero {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(16px);
     transition:
       opacity 700ms ease-out var(--delay, 0ms),
       transform 700ms ease-out var(--delay, 0ms);
@@ -99,30 +268,5 @@
   .anim-hero.visible {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  /* Ghost CTA */
-  .cta-ghost {
-    background: var(--glass-dark);
-    border: 1px solid var(--border-glass);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-  }
-
-  .cta-ghost:hover {
-    border-color: #7DB2FF;
-  }
-
-  /* Scroll indicator line */
-  .scroll-line {
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(248, 251, 255, 0.4), transparent);
-    animation: scroll-pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes scroll-pulse {
-    0%, 100% { opacity: 0.4; transform: scaleY(1); }
-    50% { opacity: 0.8; transform: scaleY(1.1); }
   }
 </style>

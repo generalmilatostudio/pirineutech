@@ -33,7 +33,7 @@
       <p class="font-body text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
         Actualitat
       </p>
-      <h2 class="font-display font-bold text-text-light mb-3" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
+      <h2 class="font-sans font-bold text-text-light mb-3" style="font-size: clamp(1.75rem, 3.5vw, 2.5rem);">
         Novetats i actualitat
       </h2>
       <p class="font-body text-base text-text-light/65 max-w-xl">
@@ -56,7 +56,7 @@
             <span class="text-text-light/40 text-xs font-body">{noticia.data}</span>
           </div>
 
-          <h3 class="font-display font-semibold text-[1.125rem] text-text-light leading-snug">
+          <h3 class="font-sans font-semibold text-[1.125rem] text-text-light leading-snug">
             {noticia.title}
           </h3>
 
