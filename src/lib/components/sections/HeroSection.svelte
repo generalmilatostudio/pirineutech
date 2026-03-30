@@ -45,17 +45,17 @@
     aria-hidden="true"
   ></video>
 
-  <!-- Contingut centrat verticalment -->
+  <!-- Contingut ancorat a la part inferior -->
   <div class="content">
 
-    <!-- Eyebrow -->
-    <p
-      class="eyebrow anim-hero"
+    <!-- Eyebrow badge glassmorphism -->
+    <span
+      class="eyebrow-badge anim-hero"
       class:visible={mounted}
       style="--delay: 200ms"
     >
       Alt Pirineu i Aran
-    </p>
+    </span>
 
     <!-- H1 -->
     <h1
@@ -66,9 +66,9 @@
       Tecnologia per transformar el Pirineu
     </h1>
 
-    <!-- Nav links inline -->
+    <!-- Nav links pill glassmorphism -->
     <nav
-      class="nav-links anim-hero"
+      class="nav-pill anim-hero"
       class:visible={mounted}
       style="--delay: 500ms"
       aria-label="Navegació hero"
@@ -145,7 +145,7 @@
       radial-gradient(ellipse 40% 40% at 50% 30%, rgba(125, 178, 255, 0.08) 0%, transparent 70%);
   }
 
-  /* ── Contingut centrat ── */
+  /* ── Contingut ancorat a baix ── */
   .content {
     position: absolute;
     inset: 0;
@@ -153,62 +153,76 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     text-align: center;
     padding: clamp(40px, 6vw, 100px);
+    padding-bottom: clamp(120px, 18vh, 200px);
   }
 
-  /* ── Eyebrow ── */
-  .eyebrow {
+  /* ── Eyebrow badge glassmorphism ── */
+  .eyebrow-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 11px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(248, 251, 255, 0.50);
-    margin-bottom: 24px;
+    color: rgba(248, 251, 255, 0.70);
+    margin-bottom: 20px;
   }
 
   /* ── H1 ── */
   .hero-h1 {
     font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: clamp(3.25rem, 7.5vw, 6rem);
+    font-weight: 600;
+    font-size: clamp(2.375rem, 5vw, 4.25rem);
     color: #F8FBFF;
-    line-height: 1.0;
-    max-width: 900px;
-    letter-spacing: -0.02em;
-    margin-bottom: 40px;
+    line-height: 1.08;
+    max-width: 820px;
+    letter-spacing: -0.01em;
+    margin-bottom: 0;
   }
 
-  /* ── Nav links inline ── */
-  .nav-links {
-    display: flex;
-    flex-direction: row;
+  /* ── Nav pill glassmorphism ── */
+  .nav-pill {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
     gap: 0;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-top: 28px;
   }
 
   .nav-link {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 11px;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(248, 251, 255, 0.55);
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     transition: color 200ms ease;
     padding: 0 14px;
   }
 
   .nav-link:hover {
-    color: rgba(248, 251, 255, 1);
+    color: rgba(255, 255, 255, 1);
   }
 
   .nav-sep {
     font-size: 11px;
-    color: rgba(248, 251, 255, 0.25);
+    color: rgba(255, 255, 255, 0.2);
     user-select: none;
   }
 
@@ -222,7 +236,7 @@
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 13px;
-    color: rgba(248, 251, 255, 0.55);
+    color: rgba(248, 251, 255, 0.45);
     max-width: 480px;
     text-align: center;
     line-height: 1.6;
