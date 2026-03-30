@@ -96,54 +96,14 @@
 
 <section class="linies-section" id="linies" aria-label="Línies estratègiques">
 
-  <!-- ── CAPA 0: fons per tab (z-index 0) ── -->
-
-  <!-- Tab 01 · Territori intel·ligent — placeholder -->
-  <div class="bg-layer" class:bg-active={activeTab === 0} aria-hidden="true">
-    <div class="bg-placeholder">
-      <!-- VIDEO_PLACEHOLDER tab01:
-      <video autoplay muted loop playsinline
-        style="position:absolute;inset:0;
-        width:100%;height:100%;object-fit:cover">
-        <source src="URL_VIDEO" type="video/mp4">
-      </video> -->
-    </div>
-  </div>
-
-  <!-- Tab 02 · Serveis digitals — Vimeo background -->
-  <div class="bg-layer" class:bg-active={activeTab === 1} aria-hidden="true">
-    <div class="bg-placeholder">
-      <iframe
-        src="https://player.vimeo.com/video/1178475114?background=1&autoplay=1&loop=1&muted=1&autopause=0"
-        style="position:absolute;inset:-10%;width:120%;height:120%;border:none;pointer-events:none;"
-        allow="autoplay; fullscreen"
-        title="Serveis digitals"
-      ></iframe>
-    </div>
-  </div>
-
-  <!-- Tab 03 · Innovació — placeholder -->
-  <div class="bg-layer" class:bg-active={activeTab === 2} aria-hidden="true">
-    <div class="bg-placeholder">
-      <!-- VIDEO_PLACEHOLDER tab03:
-      <video autoplay muted loop playsinline
-        style="position:absolute;inset:0;
-        width:100%;height:100%;object-fit:cover">
-        <source src="URL_VIDEO" type="video/mp4">
-      </video> -->
-    </div>
-  </div>
-
-  <!-- Tab 04 · Formació — placeholder -->
-  <div class="bg-layer" class:bg-active={activeTab === 3} aria-hidden="true">
-    <div class="bg-placeholder">
-      <!-- VIDEO_PLACEHOLDER tab04:
-      <video autoplay muted loop playsinline
-        style="position:absolute;inset:0;
-        width:100%;height:100%;object-fit:cover">
-        <source src="URL_VIDEO" type="video/mp4">
-      </video> -->
-    </div>
+  <!-- ── CAPA 0: fons Vimeo únic (z-index 0) ── -->
+  <div class="bg-layer" aria-hidden="true">
+    <iframe
+      src="https://player.vimeo.com/video/1178475114?background=1&autoplay=1&loop=0&muted=1&autopause=0"
+      style="position:absolute;inset:-10%;width:120%;height:120%;border:none;pointer-events:none;"
+      allow="autoplay; fullscreen"
+      title="Pirineu Tech"
+    ></iframe>
   </div>
 
   <!-- ── CAPA 1: overlay gradient (z-index 1) ── -->
@@ -220,18 +180,6 @@
     position: absolute;
     inset: 0;
     z-index: 0;
-    opacity: 0;
-    transition: opacity 800ms ease;
-  }
-
-  .bg-layer.bg-active {
-    opacity: 1;
-  }
-
-  .bg-placeholder {
-    position: absolute;
-    inset: 0;
-    background: #0C1A2E;
   }
 
   /* ── Capa 1: overlay ── */
