@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --glass-dark: rgba(12, 26, 46, 0.42);
+  --glass-light: rgba(255, 255, 255, 0.55);
+  --border-glass: rgba(255, 255, 255, 0.18);
+  --shadow-deep: rgba(5, 12, 22, 0.28);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body antialiased;
+    background-color: #07111F;
+  }
+}
+
+@layer utilities {
+  .glass-dark {
+    background: var(--glass-dark);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+  }
+
+  .glass-light {
+    background: var(--glass-light);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Viewport-triggered animations */
+.anim-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--anim-duration, 700ms) ease-out var(--anim-delay, 0ms),
+    transform var(--anim-duration, 700ms) ease-out var(--anim-delay, 0ms);
+}
+
+.anim-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-fade-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 700ms ease-out var(--anim-delay, 0ms),
+    transform 700ms ease-out var(--anim-delay, 0ms);
+}
+
+.anim-fade-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.anim-fade-right {
+  opacity: 0;
+  transform: translateX(20px);
+  transition:
+    opacity 700ms ease-out var(--anim-delay, 0ms),
+    transform 700ms ease-out var(--anim-delay, 0ms);
+}
+
+.anim-fade-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
